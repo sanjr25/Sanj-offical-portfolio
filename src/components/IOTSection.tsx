@@ -553,8 +553,8 @@ void loop() {
     reflection:
       'Demonstrated how serverless webhooks bridge physical embedded systems with software ecosystem automation, expanding device capabilities without adding code complexity on the micro-controller.',
     photos: [
-      { url: '/images/iot/smart_env_overview_dashboard.jpg', caption: 'IFTTT Webhook Event Propagation & Dashboard Synchronization' },
-      { url: '/images/iot/adafruit_io_dashboard_bulb.png', caption: 'Adafruit IO Automation Target Feed Status Monitor' }
+      { url: '/images/iot/task3_ifttt_applet_config.jpg', caption: 'IFTTT Applet Definition: Google Assistant "Activate Scene" Trigger to Adafruit IO Feed Action' },
+      { url: '/images/iot/task3_ifttt_my_applets.jpg', caption: 'IFTTT Active Applets: Dual Google Assistant Voice Commands ("activate Bulb" & "activate TURN off bulb")' }
     ],
     videos: [
       { url: '/videos/task3_ifttt_automation.mp4', title: 'IFTTT Event Automation & Voice Assistant Trigger Demonstration' }
