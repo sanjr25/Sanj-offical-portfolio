@@ -14,11 +14,9 @@ import {
   X,
   ChevronDown,
   Wrench,
-  ShieldCheck,
   Server,
   AlertTriangle,
   Sliders,
-  Sparkles,
   Database,
   Lock,
   Globe,
@@ -1467,7 +1465,6 @@ export const IOTSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'troubleshooting' | 'code' | 'media'>('overview');
   const [selectedSnippetIdx, setSelectedSnippetIdx] = useState<number>(0);
   const [lightboxPhoto, setLightboxPhoto] = useState<{ url: string; caption: string } | null>(null);
-  const [showChecklistModal, setShowChecklistModal] = useState<boolean>(false);
 
   return (
     <section id="iot" className="relative py-20 px-6 max-w-7xl mx-auto">
@@ -1486,28 +1483,6 @@ export const IOTSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Stats Badges */}
-        <div className="flex flex-wrap items-center gap-3 shrink-0">
-          <div className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-300 flex items-center gap-2 shadow-inner">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            <span className="font-bold">100% Checklist Compliant</span>
-          </div>
-          <div className="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-slate-300 flex items-center gap-2 shadow-inner">
-            <Zap className="w-4 h-4 text-emerald-400" />
-            <span>5 Modular Tasks</span>
-          </div>
-          <div className="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-slate-300 flex items-center gap-2 shadow-inner">
-            <Activity className="w-4 h-4 text-cyan-400" />
-            <span>Production Grade</span>
-          </div>
-          <button
-            onClick={() => setShowChecklistModal(true)}
-            className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-mono font-bold flex items-center gap-1.5 transition-all shadow-lg hover:shadow-emerald-500/20 cursor-pointer"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>View Audit Rubric</span>
-          </button>
-        </div>
       </div>
 
       {/* Task Cards Grid */}
@@ -2306,205 +2281,6 @@ export const IOTSection: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Audit Rubric / Checklist Compliance Modal */}
-      <AnimatePresence>
-        {showChecklistModal && (
-          <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowChecklistModal(false)}
-              className="fixed inset-0 bg-black/90 backdrop-blur-md"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.94 }}
-              className="relative z-10 max-w-4xl w-full max-h-[88vh] bg-[#0d121b] border border-emerald-500/40 rounded-2xl shadow-2xl p-6 md:p-8 flex flex-col text-slate-200 overflow-hidden"
-            >
-              <div className="flex items-center justify-between pb-4 border-b border-white/10 shrink-0">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
-                  <h3 className="font-syne font-bold text-xl text-white">IoT Assignment Complete Checker List Audit</h3>
-                </div>
-                <button
-                  onClick={() => setShowChecklistModal(false)}
-                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white cursor-pointer"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="overflow-y-auto py-5 space-y-6 text-xs font-mono flex-1">
-                <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between">
-                  <div>
-                    <span className="font-bold text-emerald-300 block text-sm">Overall Status: 100% Fully Compliant (102 / 102 Criteria Met)</span>
-                    <span className="text-slate-400 text-xs">All 5 tasks rigorously verified against the official academic checker list rubric.</span>
-                  </div>
-                  <span className="text-2xl font-bold font-syne text-emerald-400">5/5 PASS</span>
-                </div>
-
-                <div className="space-y-4">
-                  {[
-                    {
-                      title: "Task 1 — ESP32 Web Server & HTML LED Control (15 / 15 Complete)",
-                      items: [
-                        "Objective of the assignment and the problem being addressed",
-                        "Basic concept of an ESP32 Web Server",
-                        "How the ESP32 and browser communicate over Wi-Fi",
-                        "Hardware components used",
-                        "Circuit/wiring diagram (ASCII & Schematic documented)",
-                        "ESP32 pin connections (GPIO 2, GND, VIN)",
-                        "Complete Arduino/ESP32 source code (ESP32_Local_WebServer.ino)",
-                        "HTML interface developed for controlling the LED (index.html)",
-                        "How the webpage sends a command to the ESP32",
-                        "Photographs of the physical setup",
-                        "Screenshots of the web interface",
-                        "Video demonstrating LED ON/OFF control from the webpage",
-                        "Problems encountered and how they were solved",
-                        "Brief reflection on what you learned",
-                        "All required files/code available in your repository"
-                      ]
-                    },
-                    {
-                      title: "Task 2 — Adafruit IO Dashboard & MQTT (19 / 19 Complete)",
-                      items: [
-                        "Purpose of Adafruit IO in an IoT system",
-                        "Basic concept of MQTT",
-                        "MQTT Publisher, Subscriber, and Broker identified",
-                        "Role of an MQTT Topic/Feed",
-                        "Hardware and software used",
-                        "Adafruit IO account created and documented",
-                        "Dashboard and feed configuration documented",
-                        "Communication flow between ESP32, MQTT, and Adafruit IO",
-                        "MQTT topic/feed structure used",
-                        "Complete ESP32 source code (ESP32_Adafruit_MQTT.ino)",
-                        "Explanation of important code sections",
-                        "Photographs of the hardware setup",
-                        "Screenshots of the Adafruit IO dashboard",
-                        "LED control through the cloud dashboard demonstrated",
-                        "Working demonstration video",
-                        "Problems encountered during MQTT/cloud setup",
-                        "Solutions implemented",
-                        "Brief learning reflection",
-                        "All required files available in your repository"
-                      ]
-                    },
-                    {
-                      title: "Task 3 — IFTTT + Adafruit IO IoT Automation (20 / 20 Complete)",
-                      items: [
-                        "Objective of the IoT automation",
-                        "Basic concept of IoT automation",
-                        "What IFTTT is and why it is used",
-                        "Trigger → Action concept explained",
-                        "Role of Adafruit IO in the automation",
-                        "Hardware and software used",
-                        "IFTTT Applet/workflow created and documented",
-                        "Trigger used identified (Google Assistant Scene 'activate Bulb')",
-                        "Action performed identified (Send data to Adafruit IO feed)",
-                        "How the trigger reaches the IoT system",
-                        "Communication/data-flow diagram",
-                        "ESP32 source code (ESP32_IFTTT_Subscriber.ino)",
-                        "Screenshots of the IFTTT configuration (Applet config & My Applets)",
-                        "Screenshots of the Adafruit IO dashboard/feed",
-                        "Photographs of the working prototype",
-                        "Video demonstrating the complete automation",
-                        "Automation tested under different conditions",
-                        "Problems and their solutions documented",
-                        "What you learned about cloud-based automation",
-                        "Brief reflection on the assignment"
-                      ]
-                    },
-                    {
-                      title: "Task 4 — Firebase IoT Monitoring Dashboard (20 / 20 Complete)",
-                      items: [
-                        "Objective of the Firebase IoT monitoring system",
-                        "Basic concept of Cloud Computing",
-                        "IaaS, PaaS, SaaS, and BaaS explained",
-                        "What a Cloud Platform is",
-                        "What a Database is",
-                        "Firebase Realtime Database explained",
-                        "What a Cloud-Based Dashboard is",
-                        "Authentication and the purpose of a login system",
-                        "Difference between Authentication and Authorization",
-                        "Firebase project setup documented",
-                        "Firebase Authentication configuration documented",
-                        "Realtime Database structure documented (JSON tree hierarchy)",
-                        "Database/data-flow architecture",
-                        "Complete dashboard source code (HTML, CSS, JS with Firebase SDK)",
-                        "Screenshots of the login page",
-                        "Screenshots of the Firebase database",
-                        "Screenshots of the working dashboard",
-                        "Video demonstrating webpage workflow",
-                        "Problems encountered and their solutions",
-                        "Brief reflection on the assignment"
-                      ]
-                    },
-                    {
-                      title: "Task 5 — Firebase Logging, Automation & Data Export (28 / 28 Complete)",
-                      items: [
-                        "Objective of the complete IoT system",
-                        "Final system architecture documented",
-                        "DHT11 Temperature and Humidity Monitoring demonstrated",
-                        "LDR-based Light Level Monitoring demonstrated",
-                        "Manual Bulb Control implemented",
-                        "Automatic Bulb Control using LDR implemented",
-                        "Manual / Automatic Mode implemented and documented",
-                        "Logic used for automatic lighting explained (Hysteresis formula)",
-                        "LDR threshold/calibration method documented (Calibration Table)",
-                        "Historical data logging in Firebase implemented",
-                        "Database structure used for logs documented (/history collection)",
-                        "Timestamped sensor readings recorded",
-                        "Temperature and humidity values recorded",
-                        "LDR/light-level values recorded",
-                        "Bulb status and operating mode recorded",
-                        "Historical data displayed on the dashboard",
-                        "Graph/chart for recorded sensor data included",
-                        "CSV data download implemented (W3C Blob engine)",
-                        "Downloaded file demonstrated to contain the recorded data (sample CSV)",
-                        "Screenshots of the Firebase log data",
-                        "Screenshots of the dashboard and data visualization",
-                        "Photographs of the complete prototype",
-                        "Video demonstrating the complete system",
-                        "Problems encountered and solutions implemented",
-                        "Limitations of the current prototype explained",
-                        "Possible future improvements suggested",
-                        "Final learning reflection included",
-                        "All source code and project files available in the repository"
-                      ]
-                    }
-                  ].map((task, idx) => (
-                    <div key={idx} className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                      <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/5">
-                        <span className="font-bold text-white text-xs sm:text-sm">{task.title}</span>
-                        <span className="text-emerald-400 text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/20">PASS 100%</span>
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
-                        {task.items.map((item, i) => (
-                          <div key={i} className="flex items-start gap-2">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                            <span>{item}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-white/10 flex justify-end shrink-0">
-                <button
-                  onClick={() => setShowChecklistModal(false)}
-                  className="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-colors cursor-pointer"
-                >
-                  Close Audit View
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
