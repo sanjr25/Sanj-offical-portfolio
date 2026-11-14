@@ -1078,6 +1078,12 @@ void loop() {
             ['/history/{pushId}', 'object', 'ESP32', 'Dashboard history page', 'One timestamped log record per reading (used in Task 5)']
           ]
         }
+      },
+      {
+        heading: 'Video Demonstrating Webpage Workflow',
+        checklist: 'Video demonstrating webpage workflow',
+        intro: 'A recorded demonstration showcasing the end-to-end web dashboard workflow: opening the secure login portal, authenticating with Firebase Auth (email & password), real-time WebSocket telemetry synchronization from the ESP32 (displaying temperature, humidity, and LDR light levels on dynamic gauge cards), and manual appliance override toggling the physical bulb with instant bidirectional state feedback.',
+        outro: 'The complete demonstration video is embedded and playable in the Media Gallery tab below (task4_firebase_rtdb.mp4).'
       }
     ],
     taskNumber: '04',
@@ -1457,7 +1463,7 @@ window.toggleBulb = function(newState) {
       { url: '/images/iot/smart_env_recorded_measurements_log.jpg', caption: 'Firebase Environmental Telemetry Historical Log — Live Timestamped Data Records' }
     ],
     videos: [
-      { url: '/videos/task4_firebase_rtdb.mp4', title: 'Firebase Realtime Database & Sensor Dashboard Demonstration Video' }
+      { url: '/videos/task4_firebase_rtdb.mp4', title: 'Video Demonstrating Webpage Workflow — Authentication Login Portal, Real-Time Telemetry & Bulb Control' }
     ]
   },
   {
@@ -2485,6 +2491,10 @@ export const IOTSection: React.FC = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {/* Limitations */}
                           <div className="space-y-3">
+                            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-[11px] font-mono text-amber-300">
+                              <CheckCircle2 className="w-3 h-3" />
+                              <span>Limitations of the current prototype explained</span>
+                            </div>
                             <h5 className="font-mono text-xs font-bold text-amber-400 uppercase tracking-wider">
                               Limitations of the Current Prototype
                             </h5>
@@ -2498,6 +2508,10 @@ export const IOTSection: React.FC = () => {
 
                           {/* Future Improvements */}
                           <div className="space-y-3">
+                            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-mono text-emerald-300">
+                              <CheckCircle2 className="w-3 h-3" />
+                              <span>Possible future improvements suggested</span>
+                            </div>
                             <h5 className="font-mono text-xs font-bold text-emerald-400 uppercase tracking-wider">
                               Possible Future Improvements
                             </h5>
@@ -2555,11 +2569,25 @@ export const IOTSection: React.FC = () => {
                     </div>
 
                     {/* Engineering Reflection */}
-                    <div className="p-5 rounded-xl bg-white/[0.02] border border-white/10">
-                      <h4 className="font-mono text-xs text-amber-400 font-semibold uppercase tracking-wider mb-2">
-                        Engineering Reflection & Key Takeaways
+                    <div className="p-5 rounded-xl bg-white/[0.02] border border-white/10 space-y-2">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-mono text-emerald-300">
+                        <CheckCircle2 className="w-3 h-3" />
+                        <span>
+                          {selectedTask.id === 'task-01' && 'Brief reflection on what you learned'}
+                          {selectedTask.id === 'task-02' && 'Brief learning reflection'}
+                          {selectedTask.id === 'task-03' && 'Brief reflection on the assignment'}
+                          {selectedTask.id === 'task-04' && 'Brief reflection on the assignment'}
+                          {selectedTask.id === 'task-05' && 'Final learning reflection included'}
+                        </span>
+                      </div>
+                      <h4 className="font-syne text-base font-bold text-white">
+                        {selectedTask.id === 'task-01' && 'Brief Reflection on What You Learned'}
+                        {selectedTask.id === 'task-02' && 'Brief Learning Reflection'}
+                        {selectedTask.id === 'task-03' && 'Brief Reflection on the Assignment'}
+                        {selectedTask.id === 'task-04' && 'Brief Reflection on the Assignment'}
+                        {selectedTask.id === 'task-05' && 'Final Learning Reflection'}
                       </h4>
-                      <p className="font-sans text-xs text-slate-300 italic leading-relaxed">
+                      <p className="font-sans text-xs sm:text-sm text-slate-300 italic leading-relaxed">
                         "{selectedTask.reflection}"
                       </p>
                     </div>
@@ -2567,8 +2595,16 @@ export const IOTSection: React.FC = () => {
                     {/* Source Code & Project Files in Repository */}
                     {selectedTask.repoPath && (
                       <div className="p-5 rounded-xl bg-cyan-500/5 border border-cyan-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                        <div>
-                          <h4 className="flex items-center gap-2 font-mono text-xs text-cyan-300 font-semibold uppercase tracking-wider mb-1">
+                        <div className="space-y-1.5">
+                          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-mono text-emerald-300">
+                            <CheckCircle2 className="w-3 h-3" />
+                            <span>
+                              {selectedTask.id === 'task-05'
+                                ? 'All source code and project files available in the repository'
+                                : 'All required files/code available in your repository'}
+                            </span>
+                          </div>
+                          <h4 className="flex items-center gap-2 font-mono text-xs text-cyan-300 font-semibold uppercase tracking-wider">
                             <Code2 className="w-4 h-4" />
                             Source Code & Project Files (GitHub Repository)
                           </h4>
