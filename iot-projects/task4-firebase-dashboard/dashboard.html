@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Environment IoT Monitoring Dashboard</title>
+  <style>
+    :root {
+      --bg-color: #07080d;
+      --card-bg: #0f172a;
+      --accent: #38bdf8;
+      --accent-green: #10b981;
+      --border: #1e293b;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 32px 20px;
+    }
+    .header { text-align: center; margin-bottom: 32px; }
+    .header h1 { font-size: 26px; color: #fff; margin-bottom: 6px; }
+    .header p { font-size: 13px; color: #94a3b8; font-family: monospace; }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .telemetry-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+    .telemetry-card h3 { font-size: 13px; font-mono; text-transform: uppercase; color: #94a3b8; }
+    .telemetry-val {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 14px 0;
+      font-family: monospace;
+    }
+    .btn-toggle {
+      background: var(--accent-green);
+      color: #022c22;
+      border: none;
+      padding: 14px 28px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+    .btn-toggle:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Smart Environment IoT Telemetry Portal</h1>
+    <p>Persistent WebSockets Stream via Google Firebase Realtime Database</p>
+  </div>
+  <div class="dashboard-grid">
+    <div class="telemetry-card">
+      <h3>Ambient Temperature</h3>
+      <div class="telemetry-val" id="tempDisplay">--.- °C</div>
+      <span>DHT11 Digital Probe</span>
+    </div>
+    <div class="telemetry-card">
+      <h3>Relative Humidity</h3>
+      <div class="telemetry-val" id="humDisplay">--.- %</div>
+      <span>Capacitive Polymer Sensor</span>
+    </div>
+    <div class="telemetry-card">
+      <h3>Light Level</h3>
+      <div class="telemetry-val" id="ldrDisplay">---- ADC</div>
+      <span>12-Bit Analog LDR Divider</span>
+    </div>
+    <div class="telemetry-card">
+      <h3>Bulb Actuator State</h3>
+      <div class="telemetry-val" id="bulbStatus">STANDBY</div>
+      <button class="btn-toggle" onclick="toggleBulb(true)">Toggle Appliance Load</button>
+    </div>
+  </div>
+  <script type="module" src="firebase_dashboard.js"></script>
+</body>
+</html>

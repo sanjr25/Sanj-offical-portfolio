@@ -1,0 +1,11 @@
+{
+  "event": "scheduled_automation_trigger",
+  "source": "google_assistant_or_scheduler",
+  "feed_key": "bulb",
+  "value": "ON",
+  "timestamp": "2026-09-28T10:00:00Z",
+  "http_headers": {
+    "Content-Type": "application/json",
+    "X-AIO-Key": "YOUR_ADAFRUIT_IO_KEY"
+  }
+}
